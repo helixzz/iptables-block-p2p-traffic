@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Insert into /etc/network/interface file 
+# Add the following line to the interface configuration block
+# pre-up /opt/iptables_block_p2p_traffic.sh
+# OR use cron or initscript to make sure the script runs at system startup
+
 # Reject marked ED2K, BitTorrent traffic
 iptables -t mangle -A OUTPUT -j CONNMARK --restore-mark
 iptables -t mangle -A OUTPUT -m mark ! --mark 0 -j ACCEPT
